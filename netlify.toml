@@ -1,0 +1,10 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Перенаправление /api/check-referral на serverless-функцию
+[[redirects]]
+  from = "/api/check-referral"
+  to = "/.netlify/functions/check-referral"
+  status = 200
+  force = true
