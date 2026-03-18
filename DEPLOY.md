@@ -11,23 +11,42 @@
 
 ---
 
-## Вариант A: Netlify
+## Вариант A: Vercel (рекомендуется, бесплатно)
 
-1. Зарегистрируйтесь на [app.netlify.com](https://app.netlify.com)
-2. **Add new site** → **Import an existing project** (или перетащите папку в Netlify Drop)
-3. Если через Git: подключите репозиторий
-4. Настройки сборки:
-   - **Build command:** оставьте пустым или `echo "No build"`
-   - **Publish directory:** `public`
-   - **Functions directory:** `netlify/functions` (уже в netlify.toml)
-5. **Site settings** → **Environment variables** → добавить:
-   - `BYBIT_API_KEY`
-   - `BYBIT_API_SECRET`
-6. Deploy → скопируйте URL: `https://ваш-сайт.netlify.app`
+1. Зайдите на [vercel.com](https://vercel.com) и войдите через GitHub
+2. **Add New** → **Project**
+3. Импортируйте репозиторий **botref** (pifagortradebtc/botref)
+4. **Environment Variables** → добавьте:
+   - `BYBIT_API_KEY` = ваш ключ
+   - `BYBIT_API_SECRET` = ваш секрет
+5. **Deploy**
+6. Скопируйте URL: `https://botref-xxx.vercel.app`
 
 ---
 
-## Вариант B: Vercel
+## Вариант B: Render (бесплатно, без карты)
+
+1. Зайдите на [render.com](https://render.com) и войдите через GitHub
+2. **New** → **Web Service**
+3. Подключите репозиторий **botref**
+4. Render подхватит `render.yaml` автоматически
+5. **Environment** → добавьте `BYBIT_API_KEY` и `BYBIT_API_SECRET`
+6. **Create Web Service**
+7. Скопируйте URL: `https://bybit-referral-checker.onrender.com`
+
+---
+
+## Вариант C: Netlify (если есть кредиты)
+
+1. Зарегистрируйтесь на [app.netlify.com](https://app.netlify.com)
+2. **Add new site** → **Import an existing project**
+3. Подключите репозиторий **botref**
+4. **Site settings** → **Environment variables** → `BYBIT_API_KEY`, `BYBIT_API_SECRET`
+5. Deploy → URL: `https://ваш-сайт.netlify.app`
+
+---
+
+## Вариант D: Vercel (через CLI)
 
 1. Зарегистрируйтесь на [vercel.com](https://vercel.com)
 2. Установите Vercel CLI: `npm i -g vercel`
@@ -45,7 +64,7 @@
 
 ---
 
-## Вариант C: Railway
+## Вариант E: Railway
 
 1. Зарегистрируйтесь на [railway.app](https://railway.app)
 2. New Project → Deploy from GitHub (или Deploy from folder)
@@ -61,7 +80,7 @@
 
 ---
 
-## Вариант D: Render
+## Вариант F: Render (CLI)
 
 1. Зарегистрируйтесь на [render.com](https://render.com)
 2. New → Web Service
