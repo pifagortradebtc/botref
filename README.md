@@ -1,6 +1,6 @@
 # Bybit Referral Checker
 
-Telegram Mini App для проверки рефералов Bybit по WID.
+Telegram Mini App для проверки рефералов Bybit по UID.
 
 ## Установка
 

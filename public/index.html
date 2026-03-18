@@ -137,22 +137,22 @@
 <body>
   <div class="container">
     <h1>Проверка реферала</h1>
-    <p class="subtitle">Введите WID пользователя Bybit, чтобы узнать, является ли он вашим рефералом</p>
+    <p class="subtitle">Введите UID пользователя Bybit, чтобы узнать, является ли он вашим рефералом</p>
 
     <form id="form">
       <div class="form-group">
-        <label for="wid">WID (User ID) Bybit</label>
+        <label for="uid">UID (User ID) Bybit</label>
         <input
           type="text"
-          id="wid"
-          name="wid"
+          id="uid"
+          name="uid"
           placeholder="Например: 103895898"
           inputmode="numeric"
           pattern="[0-9]*"
           autocomplete="off"
           required
         />
-        <p class="hint">WID можно найти в профиле пользователя на Bybit или в настройках аккаунта</p>
+        <p class="hint">UID можно найти в профиле пользователя на Bybit или в настройках аккаунта</p>
       </div>
       <button type="submit" class="btn" id="submitBtn">Проверить</button>
     </form>
@@ -163,7 +163,7 @@
   <script>
     (function() {
       const form = document.getElementById('form');
-      const widInput = document.getElementById('wid');
+      const uidInput = document.getElementById('uid');
       const submitBtn = document.getElementById('submitBtn');
       const resultEl = document.getElementById('result');
 
@@ -194,8 +194,8 @@
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const wid = widInput.value.trim();
-        if (!wid) return;
+        const uid = uidInput.value.trim();
+        if (!uid) return;
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="loader"></span>Проверка...';
@@ -206,7 +206,7 @@
           const res = await fetch(apiBase + '/check-referral', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ wid }),
+            body: JSON.stringify({ uid }),
           });
           const data = await res.json();
 
@@ -218,7 +218,7 @@
           if (data.success && data.isReferral) {
             const u = data.userInfo || {};
             const details = `
-              <dt>User ID</dt><dd>${escapeHtml(u.userId || wid)}</dd>
+              <dt>User ID</dt><dd>${escapeHtml(u.userId || uid)}</dd>
               ${u.registerTime ? `<dt>Дата регистрации</dt><dd>${escapeHtml(u.registerTime)}</dd>` : ''}
               ${u.tradeVol30Day ? `<dt>Объём за 30 дней (USDT)</dt><dd>${escapeHtml(u.tradeVol30Day)}</dd>` : ''}
               ${u.tradeVol365Day ? `<dt>Объём за год (USDT)</dt><dd>${escapeHtml(u.tradeVol365Day)}</dd>` : ''}

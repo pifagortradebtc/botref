@@ -84,20 +84,20 @@ function bybitRequest(queryParams = {}) {
 }
 
 app.post('/api/check-referral', async (req, res) => {
-  const { wid } = req.body || {};
+  const { uid } = req.body || {};
 
-  if (!wid || typeof wid !== 'string') {
+  if (!uid || typeof uid !== 'string') {
     return res.status(400).json({
       success: false,
-      error: 'Укажите WID (номер пользователя Bybit)',
+      error: 'Укажите UID (номер пользователя Bybit)',
     });
   }
 
-  const trimmedWid = String(wid).trim();
-  if (!trimmedWid) {
+  const trimmedUid = String(uid).trim();
+  if (!trimmedUid) {
     return res.status(400).json({
       success: false,
-      error: 'WID не может быть пустым',
+      error: 'UID не может быть пустым',
     });
   }
 
@@ -127,7 +127,7 @@ app.post('/api/check-referral', async (req, res) => {
       }
 
       const list = result.result?.list || [];
-      const match = list.find((u) => String(u.userId) === trimmedWid);
+      const match = list.find((u) => String(u.userId) === trimmedUid);
 
       if (match) {
         found = true;
