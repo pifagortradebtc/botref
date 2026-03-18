@@ -3,6 +3,7 @@
  * API ключ хранится на сервере — никогда не передаётся в клиент
  */
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const crypto = require('crypto');
@@ -21,7 +22,7 @@ const BYBIT_BASE_URL = process.env.BYBIT_BASE_URL || 'https://api.bybit.com';
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function createBybitSignature(queryString, timestamp) {
   const recvWindow = '5000';
