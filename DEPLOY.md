@@ -24,14 +24,16 @@
 
 ---
 
-## Вариант B: Render (бесплатно, без карты)
+## Вариант B: Render (рекомендуется — серверы в EU, Bybit не блокирует)
 
-1. Зайдите на [render.com](https://render.com) и войдите через GitHub
-2. **New** → **Web Service**
+**Важно:** Bybit блокирует запросы с IP США и Китая. Vercel использует серверы в США. Render с регионом Frankfurt (Германия) работает с Bybit.
+
+1. Зайдите на [dashboard.render.com](https://dashboard.render.com)
+2. **New** → **Blueprint**
 3. Подключите репозиторий **botref**
-4. Render подхватит `render.yaml` автоматически
+4. Render подхватит `render.yaml` (регион Frankfurt уже указан)
 5. **Environment** → добавьте `BYBIT_API_KEY` и `BYBIT_API_SECRET`
-6. **Create Web Service**
+6. **Apply**
 7. Скопируйте URL: `https://bybit-referral-checker.onrender.com`
 
 ---
