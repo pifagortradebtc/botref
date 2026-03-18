@@ -62,9 +62,19 @@ function bybitRequest(queryParams = {}) {
       res.on('data', (chunk) => (data += chunk));
       res.on('end', () => {
         try {
-          resolve(JSON.parse(data));
+          const parsed = JSON.parse(data);
+          resolve(parsed);
         } catch {
-          reject(new Error('Invalid response from Bybit'));
+          const status = res.statusCode;
+          const preview = String(data).slice(0, 150);
+          console.error('Bybit API raw response:', status, preview);
+          if (status === 403) {
+            reject(new Error('Bybit блокирует запросы с этого региона (US/China). Используйте VPS в другой стране.'));
+          } else if (status >= 400) {
+            reject(new Error(`Bybit API ошибка ${status}. Проверьте API ключ и разрешения.`));
+          } else {
+            reject(new Error('Неверный ответ от Bybit. Проверьте API ключ с разрешением Affiliate.'));
+          }
         }
       });
     });
