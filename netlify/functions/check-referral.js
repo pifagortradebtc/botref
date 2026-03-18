@@ -2,8 +2,8 @@ const crypto = require('crypto');
 const https = require('https');
 const http = require('http');
 
-const BYBIT_API_KEY = process.env.BYBIT_API_KEY || '';
-const BYBIT_API_SECRET = process.env.BYBIT_API_SECRET || '';
+const BYBIT_API_KEY = (process.env.BYBIT_API_KEY || '').trim();
+const BYBIT_API_SECRET = (process.env.BYBIT_API_SECRET || '').trim();
 const BYBIT_BASE_URL = process.env.BYBIT_BASE_URL || 'https://api.bybit.com';
 
 function createBybitSignature(queryString, timestamp) {

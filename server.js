@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 3000;
 // ВАЖНО: Создайте файл .env и добавьте:
 // BYBIT_API_KEY=ваш_api_key
 // BYBIT_API_SECRET=ваш_api_secret
-const BYBIT_API_KEY = process.env.BYBIT_API_KEY || '';
-const BYBIT_API_SECRET = process.env.BYBIT_API_SECRET || '';
+const BYBIT_API_KEY = (process.env.BYBIT_API_KEY || '').trim();
+const BYBIT_API_SECRET = (process.env.BYBIT_API_SECRET || '').trim();
 const BYBIT_BASE_URL = process.env.BYBIT_BASE_URL || 'https://api.bybit.com';
 
 app.use(cors());
