@@ -1,7 +1,3 @@
-/**
- * Backend для проверки рефералов Bybit
- * API ключ хранится на сервере — никогда не передаётся в клиент
- */
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -66,8 +62,7 @@ function bybitRequest(queryParams = {}) {
           resolve(parsed);
         } catch {
           const status = res.statusCode;
-          const preview = String(data).slice(0, 150);
-          console.error('Bybit API raw response:', status, preview);
+          console.error('Bybit API error:', status, String(data).slice(0, 100));
           if (status === 403) {
             reject(new Error('Bybit блокирует запросы с этого региона (US/China). Используйте VPS в другой стране.'));
           } else if (status >= 400) {
@@ -174,15 +169,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Для Vercel: экспорт app (не запускаем listen)
-module.exports = app;
-
-// Для локального запуска / Railway / Render
-if (require.main === module && !process.env.VERCEL) {
+if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`Сервер запущен на порту ${PORT}`);
+    console.log(`Сервер: http://localhost:${PORT}`);
     if (!BYBIT_API_KEY || !BYBIT_API_SECRET) {
-      console.warn('ВНИМАНИЕ: BYBIT_API_KEY и BYBIT_API_SECRET не заданы. Создайте .env файл.');
+      console.warn('Задайте BYBIT_API_KEY и BYBIT_API_SECRET в .env');
     }
   });
 }

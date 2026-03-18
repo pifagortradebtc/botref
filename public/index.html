@@ -175,15 +175,7 @@
         document.documentElement.style.setProperty('--accent', tg.themeParams.button_color || '#f7931a');
       }
 
-      function getApiBase() {
-        if (window.Telegram && window.Telegram.WebApp) {
-          const initData = window.Telegram.WebApp.initData;
-          if (initData) {
-            return window.API_BASE || '/api';
-          }
-        }
-        return window.API_BASE || '/api';
-      }
+      const apiBase = window.API_BASE || '/api';
 
       function showResult(type, title, message, details) {
         resultEl.className = 'result visible ' + type;
@@ -211,8 +203,7 @@
         resultEl.innerHTML = '';
 
         try {
-          const base = getApiBase();
-          const res = await fetch(base + '/check-referral', {
+          const res = await fetch(apiBase + '/check-referral', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ wid }),

@@ -1,18 +1,7 @@
-# Зависимости
 node_modules/
-
-# Секреты — НИКОГДА не коммитить
 .env
 .env.local
 .env.*.local
-
-# Логи и временные файлы
 *.log
 .DS_Store
-Thumbs.db
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+.vercel

@@ -1,16 +1,11 @@
-# Render.com — конфигурация для деплоя
-# https://render.com/docs/blueprint-spec
-
 services:
   - type: web
     name: bybit-referral-checker
     runtime: node
     plan: free
     region: frankfurt
-
     buildCommand: npm install
     startCommand: npm start
-
     envVars:
       - key: BYBIT_API_KEY
         sync: false
